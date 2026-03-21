@@ -70,7 +70,7 @@ export function Hero() {
         >
           <a
             href="#contact"
-            className="group px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+            className="group px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:shadow-lg hover:shadow-primary/25 hover:scale-105 active:scale-95 transition-all duration-300"
           >
             Work with me
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
