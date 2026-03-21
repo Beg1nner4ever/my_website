@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     "Machine Learning",
     "Full Stack Developer",
   ],
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
