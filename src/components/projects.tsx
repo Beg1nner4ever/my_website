@@ -22,14 +22,6 @@ const projects = [
     featured: true,
   },
   {
-    title: "Paperclip",
-    description:
-      "AI-powered project management and agent orchestration platform. Governance-aware task coordination across multiple AI coding agents.",
-    tags: ["TypeScript", "AI Orchestration", "Multi-Agent"],
-    github: "https://github.com/Beg1nner4ever",
-    featured: true,
-  },
-  {
     title: "Youtuber Agent",
     description:
       "Automated creative content pipeline using AI. Goal: revenue-generating automated content creation extensible to multiple platforms.",

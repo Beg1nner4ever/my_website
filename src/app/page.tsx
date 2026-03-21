@@ -5,6 +5,7 @@ import { BentoGrid } from "@/components/bento-grid";
 import { Services } from "@/components/services";
 import { TechMarquee } from "@/components/marquee";
 import { Experience } from "@/components/experience";
+import { Clients } from "@/components/clients";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -20,6 +21,7 @@ export default function Home() {
         <Services />
         <TechMarquee />
         <Experience />
+        <Clients />
         <Projects />
         <Contact />
       </main>
