@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { Preloader } from "@/components/layout/preloader";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const instrumentSerif = localFont({
+  src: "../fonts/instrument-serif.woff2",
+  variable: "--font-heading",
+  display: "swap",
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const instrumentSans = localFont({
+  src: "../fonts/instrument-sans.woff2",
+  variable: "--font-sans",
+  display: "swap",
+  weight: "400 700",
+});
+
+const jetbrainsMono = localFont({
+  src: "../fonts/jetbrains-mono.woff2",
+  variable: "--font-mono",
+  display: "swap",
+  weight: "400 500",
 });
 
 export const metadata: Metadata = {
@@ -37,10 +51,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="min-h-full flex flex-col noise">
+        <Preloader>
+          <SmoothScroll>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </Preloader>
       </body>
     </html>
   );

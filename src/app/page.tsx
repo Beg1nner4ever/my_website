@@ -1,31 +1,22 @@
-import { Navbar } from "@/components/navbar";
-import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { BentoGrid } from "@/components/bento-grid";
-import { Services } from "@/components/services";
-import { TechMarquee } from "@/components/marquee";
-import { Experience } from "@/components/experience";
-import { Clients } from "@/components/clients";
-import { Projects } from "@/components/projects";
-import { Contact } from "@/components/contact";
-import { Footer } from "@/components/footer";
+import { Hero } from "@/components/sections/hero";
+import { ClientsStrip } from "@/components/sections/clients-strip";
+import { ServicesPreview } from "@/components/sections/services-preview";
+import { FeaturedWork } from "@/components/sections/featured-work";
+import { BlogPreview } from "@/components/sections/blog-preview";
+import { CTASection } from "@/components/sections/cta-section";
+import { getAllPosts } from "@/lib/blog";
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 3);
+
   return (
-    <div className="noise">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <BentoGrid />
-        <Services />
-        <TechMarquee />
-        <Experience />
-        <Clients />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <ClientsStrip />
+      <ServicesPreview />
+      <FeaturedWork />
+      <BlogPreview posts={posts} />
+      <CTASection />
+    </>
   );
 }
