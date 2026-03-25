@@ -4,6 +4,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Preloader } from "@/components/layout/preloader";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./globals.css";
 
 const instrumentSerif = localFont({
@@ -61,6 +63,8 @@ export default function RootLayout({
             <Footer />
           </SmoothScroll>
         </Preloader>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
