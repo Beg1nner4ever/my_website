@@ -11,8 +11,8 @@ const footerNav = [
 
 const socials = [
   { icon: Github, href: "https://github.com/Beg1nner4ever", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:hello@beg1nner4ever.com", label: "Email" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/pwidenfels/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:support@beg1nner4ever.com", label: "Email" },
 ];
 
 export function Footer() {

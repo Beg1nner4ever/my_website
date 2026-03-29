@@ -9,6 +9,7 @@ export function StructuredData() {
       "Freelance Applied AI Engineer and Data Scientist based in Europe. Building intelligent systems, ML pipelines, and full-stack applications.",
     sameAs: [
       "https://github.com/Beg1nner4ever",
+      "https://www.linkedin.com/in/pwidenfels/",
     ],
     knowsAbout: [
       "Artificial Intelligence",

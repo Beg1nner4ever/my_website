@@ -7,8 +7,8 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@beg1nner4ever.com",
-    href: "mailto:hello@beg1nner4ever.com",
+    value: "support@beg1nner4ever.com",
+    href: "mailto:support@beg1nner4ever.com",
     description: "Best for project inquiries",
   },
   {
@@ -22,7 +22,7 @@ const contactMethods = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "Philipp Widenfels",
-    href: "#",
+    href: "https://www.linkedin.com/in/pwidenfels/",
     description: "Let's connect professionally",
   },
 ];
