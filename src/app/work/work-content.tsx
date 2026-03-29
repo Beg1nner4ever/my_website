@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
@@ -118,11 +117,10 @@ export function WorkPage() {
             <AnimatedSection key={client.name} delay={i * 0.06}>
               <div className="p-6 rounded-lg border border-border bg-card group hover:border-primary/20 transition-all duration-500">
                 <div className="h-12 flex items-center mb-4">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={client.logo}
                     alt={client.name}
-                    width={80}
-                    height={32}
                     className="h-6 w-auto object-contain opacity-50 grayscale group-hover:opacity-80 group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>

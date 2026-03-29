@@ -30,7 +30,11 @@ const jetbrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Philipp Widenfels — Applied AI Engineer & Data Scientist",
+  metadataBase: new URL("https://beg1nner4ever.com"),
+  title: {
+    default: "Philipp Widenfels — Applied AI Engineer & Data Scientist",
+    template: "%s | Philipp Widenfels",
+  },
   description:
     "Freelance Applied AI Engineer and Data Scientist based in Europe. Building intelligent systems, ML pipelines, and full-stack applications.",
   keywords: [
@@ -42,6 +46,14 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: "/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Philipp Widenfels",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

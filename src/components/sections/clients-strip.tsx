@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { clients } from "@/data/clients";
 
@@ -31,17 +29,16 @@ export function ClientsStrip() {
               transition={{
                 duration: 0.5,
                 delay: i * 0.07,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.22, 1, 0.36, 1] as const,
               }}
               className="group relative"
               title={client.name}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={client.logo}
                 alt={client.name}
-                width={100}
-                height={40}
-                className="h-8 w-auto object-contain opacity-40 grayscale transition-all duration-500 group-hover:opacity-80 group-hover:grayscale-0"
+                className="h-6 w-auto object-contain opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
               />
             </motion.div>
           ))}
