@@ -38,7 +38,7 @@ export function ClientsStrip() {
               <img
                 src={client.logo}
                 alt={client.name}
-                className="h-6 w-auto object-contain opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                className="h-6 max-w-[120px] w-auto object-contain opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
               />
             </motion.div>
           ))}
