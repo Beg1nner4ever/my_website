@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HeroCanvas = dynamic(
   () => import("@/components/three/hero-canvas").then((m) => m.HeroCanvas),
@@ -25,7 +25,7 @@ export function Hero() {
     }
   }, []);
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-end pb-24 overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/50" />
 
@@ -40,7 +40,7 @@ export function Hero() {
         </div>
       )}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="max-w-4xl">
           {/* Availability badge */}
           <motion.div
@@ -106,20 +106,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown size={20} className="text-muted-foreground" />
-          </motion.div>
-        </motion.div>
+{/* Scroll indicator removed — content is visible above fold */}
       </div>
     </section>
   );

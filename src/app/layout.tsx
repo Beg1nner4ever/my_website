@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { Preloader } from "@/components/layout/preloader";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { StructuredData } from "./structured-data";
 import "./globals.css";
 
 const instrumentSerif = localFont({
@@ -67,6 +68,9 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
+      <head>
+        <StructuredData />
+      </head>
       <body className="min-h-full flex flex-col noise">
         <Preloader>
           <SmoothScroll>
