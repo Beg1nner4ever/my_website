@@ -7,6 +7,13 @@ export interface Client {
 
 export const clients: Client[] = [
   {
+    name: "Mantu",
+    description:
+      "AI strategy, implementation, and AI board initiatives across enterprise clients",
+    industry: "Consulting",
+    logo: "/logos/mantu.svg",
+  },
+  {
     name: "BNP Paribas",
     description:
       "Process mining & data quality analysis on a 14.5GB transaction dataset",
