@@ -49,17 +49,30 @@ export function ProjectDetail({ project }: { project: Project }) {
             {project.description}
           </p>
 
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-sm text-primary hover:underline"
-            >
-              View on GitHub
-              <ArrowUpRight size={14} />
-            </a>
-          )}
+          <div className="mt-6 flex flex-wrap gap-6">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                Visit live site
+                <ArrowUpRight size={14} />
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                View on GitHub
+                <ArrowUpRight size={14} />
+              </a>
+            )}
+          </div>
         </motion.div>
 
         {/* Image placeholder */}
