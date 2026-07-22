@@ -29,6 +29,9 @@ export function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
@@ -53,7 +56,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={`text-sm tracking-wide transition-colors duration-300 link-underline ${
-                pathname === link.href
+                isActive(link.href)
                   ? "text-foreground font-medium"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -95,7 +98,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`text-lg transition-colors duration-300 ${
-                    pathname === link.href
+                    isActive(link.href)
                       ? "text-foreground font-medium"
                       : "text-muted-foreground"
                   }`}

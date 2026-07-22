@@ -11,7 +11,7 @@ export function ServicesPreview() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="section-padding">
+    <section ref={ref} className="pt-16 pb-32 md:pt-20 md:pb-40">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">

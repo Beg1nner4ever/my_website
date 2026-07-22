@@ -16,7 +16,7 @@ export function Preloader({ children }: { children: React.ReactNode }) {
     const timer = setTimeout(() => {
       setLoading(false);
       sessionStorage.setItem("visited", "true");
-    }, 1800);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, []);
@@ -37,8 +37,7 @@ export function Preloader({ children }: { children: React.ReactNode }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.6,
-                  delay: 0.2,
+                  duration: 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className="font-heading text-5xl tracking-tight text-foreground"
@@ -50,7 +49,7 @@ export function Preloader({ children }: { children: React.ReactNode }) {
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 1.4, delay: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.45, delay: 0.1, ease: "easeInOut" }}
                 className="mt-6 h-px w-16 mx-auto bg-primary origin-left"
               />
             </div>

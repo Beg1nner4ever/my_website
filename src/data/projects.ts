@@ -14,7 +14,6 @@ export const projects: Project[] = [
     description:
       "Personal AI assistant that orchestrates Claude Code sub-agents with MCP tools. An always-on assistant connected to tools, information, and daily workflows.",
     tags: ["TypeScript", "Claude API", "MCP", "AI Agents"],
-    github: "https://github.com/Beg1nner4ever/owui-openclaw-integration",
     featured: true,
   },
   {
@@ -24,6 +23,14 @@ export const projects: Project[] = [
       "Converting NVIDIA's speech-to-speech model from CUDA to Apple MLX format. Enabling local voice interaction on Apple Silicon Macs.",
     tags: ["Python", "MLX", "CUDA", "Speech AI"],
     featured: true,
+  },
+  {
+    title: "DINO Reproduction",
+    slug: "dino-reproduction",
+    description:
+      "Reduced reproduction of DINO (Caron et al., ICCV 2021) — self-supervised Vision Transformer trained on STL-10. Deep learning validation project at Albert School.",
+    tags: ["Python", "PyTorch", "Self-Supervised", "Computer Vision"],
+    github: "https://github.com/Beg1nner4ever/DINO-Saure",
   },
   {
     title: "Youtuber Agent",

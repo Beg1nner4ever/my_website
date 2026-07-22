@@ -14,12 +14,14 @@ const HeroCanvas = dynamic(
 export function Hero() {
   const [showCanvas, setShowCanvas] = useState(false);
 
-  // Delay 3D scene load to prioritize text content
+  // Delay 3D scene load to prioritize text content; skip it entirely on
+  // small screens and for reduced-motion users — it's decorative only
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (!prefersReducedMotion) {
+    const isSmallScreen = window.matchMedia("(max-width: 767px)").matches;
+    if (!prefersReducedMotion && !isSmallScreen) {
       const timer = setTimeout(() => setShowCanvas(true), 300);
       return () => clearTimeout(timer);
     }

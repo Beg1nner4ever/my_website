@@ -90,6 +90,9 @@ export function ContactPage() {
                     <p className="text-sm font-medium text-foreground">
                       {method.label}
                     </p>
+                    <p className="text-sm text-foreground/80 mt-0.5 truncate">
+                      {method.value}
+                    </p>
                     <p className="text-xs text-muted-foreground mt-0.5">
                       {method.description}
                     </p>

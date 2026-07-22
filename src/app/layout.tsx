@@ -20,14 +20,7 @@ const instrumentSans = localFont({
   src: "../fonts/instrument-sans.woff2",
   variable: "--font-sans",
   display: "swap",
-  weight: "400 700",
-});
-
-const jetbrainsMono = localFont({
-  src: "../fonts/jetbrains-mono.woff2",
-  variable: "--font-mono",
-  display: "swap",
-  weight: "400 500",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -66,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${instrumentSans.variable} h-full antialiased`}
     >
       <head>
         <StructuredData />
