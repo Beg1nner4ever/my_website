@@ -63,12 +63,11 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8 font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-foreground"
           >
-            I build intelligent
+            I take AI from
             <br />
-            systems that{" "}
-            <span className="text-gradient italic">solve</span>
+            proof of concept
             <br />
-            real problems.
+            to <span className="text-gradient italic">production</span>.
           </motion.h1>
 
           {/* Sub-copy */}
@@ -78,8 +77,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
           >
-            Applied AI Engineer & Data Scientist based in Europe.
-            Helping organizations turn complex data into products that work.
+            Applied AI Engineer & Data Scientist in Paris. I help enterprise
+            teams turn AI ambitions into shipped, measurable products —
+            pipelines, agents, and full-stack applications.
           </motion.p>
 
           {/* CTAs */}
