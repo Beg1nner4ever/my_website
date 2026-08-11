@@ -1,92 +1,57 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-const footerNav = [
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const links = [
+  ["Work", "/work"],
+  ["Services", "/services"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
 ];
 
 const socials = [
-  { icon: Github, href: "https://github.com/Beg1nner4ever", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/pwidenfels/", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:support@beg1nner4ever.com", label: "Email" },
+  ["GitHub", "https://github.com/Beg1nner4ever"],
+  ["LinkedIn", "https://www.linkedin.com/in/pwidenfels/"],
+  ["Email", "mailto:support@beg1nner4ever.com"],
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
+    <footer className="border-t border-white/10 bg-[#0b0f17] py-12 text-white">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-10 md:grid-cols-[1fr_auto_auto] md:gap-20">
           <div>
-            <Link
-              href="/"
-              className="font-heading text-3xl tracking-tight text-foreground"
-            >
-              pw.
+            <Link href="/" className="font-mono text-xs font-semibold uppercase tracking-[0.14em]">
+              PW / Product engineer
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Applied AI Engineer & Data Scientist.
-              <br />
-              Building intelligent systems in Europe.
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/48">
+              Applied AI, product design, and full-stack engineering from Paris.
             </p>
           </div>
-
-          {/* Navigation */}
-          <div>
-            <h4 className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
-              Navigation
-            </h4>
-            <ul className="space-y-3">
-              {footerNav.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div>
-            <h4 className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
-              Connect
-            </h4>
-            <div className="flex gap-4">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon size={16} />
-                </a>
-              ))}
-            </div>
+          <nav className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
+            {links.map(([label, href]) => (
+              <Link key={href} href={href} className="text-white/60 transition-colors hover:text-white">
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="space-y-3">
+            {socials.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between gap-8 text-sm text-white/60 transition-colors hover:text-white"
+              >
+                {label}
+                <ArrowUpRight size={13} />
+              </a>
+            ))}
           </div>
         </div>
-
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Philipp Widenfels. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Available for freelance &mdash;{" "}
-            <Link href="/contact" className="text-primary hover:underline">
-              let&apos;s talk
-            </Link>
-          </p>
+        <div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-white/10 pt-5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/32">
+          <span>© {new Date().getFullYear()} Philipp Widenfels</span>
+          <span>Paris / CET</span>
         </div>
       </div>
     </footer>

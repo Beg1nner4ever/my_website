@@ -7,11 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about" },
 ];
 
 export function Navbar() {
@@ -25,18 +23,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
+  const overDarkHero = pathname === "/" && !scrolled;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         scrolled
-          ? "glass shadow-sm"
+          ? "glass"
           : "bg-transparent"
       }`}
     >
@@ -44,9 +39,11 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-heading text-2xl tracking-tight text-foreground hover:text-primary transition-colors duration-300"
+          className={`font-mono text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${
+            overDarkHero ? "text-white" : "text-foreground"
+          }`}
         >
-          pw.
+          PW / 2026
         </Link>
 
         {/* Desktop links */}
@@ -55,10 +52,11 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm tracking-wide transition-colors duration-300 link-underline ${
+              onClick={() => setIsOpen(false)}
+              className={`font-mono text-[11px] uppercase tracking-[0.12em] transition-colors duration-300 link-underline ${
                 isActive(link.href)
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? overDarkHero ? "text-white" : "text-foreground font-medium"
+                  : overDarkHero ? "text-white/55 hover:text-white" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {link.label}
@@ -66,7 +64,11 @@ export function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-full hover:opacity-90 transition-opacity duration-300"
+            className={`px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300 ${
+              overDarkHero
+                ? "bg-[#9cff57] text-[#0b0f17] hover:bg-white"
+                : "bg-foreground text-background hover:bg-primary"
+            }`}
           >
             Get in touch
           </Link>
@@ -75,7 +77,7 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-foreground"
+          className={`md:hidden p-2 ${overDarkHero ? "text-white" : "text-foreground"}`}
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -97,6 +99,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  onClick={() => setIsOpen(false)}
                   className={`text-lg transition-colors duration-300 ${
                     isActive(link.href)
                       ? "text-foreground font-medium"
@@ -108,6 +111,7 @@ export function Navbar() {
               ))}
               <Link
                 href="/contact"
+                onClick={() => setIsOpen(false)}
                 className="mt-2 px-5 py-3 text-center text-sm font-medium bg-primary text-primary-foreground rounded-full"
               >
                 Get in touch

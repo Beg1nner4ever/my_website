@@ -1,76 +1,77 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import { services } from "@/data/services";
+import { ArrowUpRight } from "lucide-react";
+
+const stages = [
+  {
+    label: "Frame",
+    title: "Find the product inside the brief.",
+    copy: "Clarify the user, the operational constraint, and what proof of value should look like before choosing a stack.",
+  },
+  {
+    label: "Build",
+    title: "Make the risky part real first.",
+    copy: "Prototype the hard interaction, data path, or model behavior early, then turn the winning direction into a coherent product.",
+  },
+  {
+    label: "Ship",
+    title: "Own the last twenty percent.",
+    copy: "Responsive QA, accessibility, monitoring, deployment, documentation, and a handoff people can actually operate.",
+  },
+];
 
 export function ServicesPreview() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section ref={ref} className="pt-16 pb-32 md:pt-20 md:pb-40">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
-              What I do
+    <section ref={ref} className="bg-white py-24 text-[#0b0f17] md:py-32">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-black/45">
+              How I work
             </p>
-            <h2 className="font-heading text-4xl md:text-5xl tracking-tight text-foreground">
-              Services
+            <h2 className="mt-4 max-w-xl font-sans text-5xl font-semibold leading-[0.94] tracking-[-0.055em] md:text-7xl">
+              One owner from ambiguity to launch.
             </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+            <p className="mt-7 max-w-lg text-lg leading-relaxed text-black/58">
+              The useful part of hiring independently is continuity: the person
+              who questions the brief is also the person who designs the system,
+              writes the code, and sees the release through.
+            </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 group"
+              className="mt-8 inline-flex items-center gap-2 border-b border-black pb-1 text-sm font-semibold"
             >
-              Explore all services
-              <ArrowRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
+              See capabilities
+              <ArrowUpRight size={14} />
             </Link>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: 0.1 + i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="group p-8 rounded-lg border border-border bg-card hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-500"
-            >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
-                <service.icon size={20} className="text-primary" />
-              </div>
-              <h3 className="text-lg font-medium text-foreground mb-2">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-            </motion.div>
-          ))}
+          <div className="border-t border-black/20">
+            {stages.map((stage, index) => (
+              <motion.div
+                key={stage.label}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: reduceMotion ? 0 : 0.55, delay: index * 0.08 }}
+                className="grid gap-4 border-b border-black/20 py-8 md:grid-cols-[100px_1fr_1fr] md:gap-8"
+              >
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#3157ff]">
+                  {stage.label}
+                </p>
+                <h3 className="text-xl font-semibold tracking-[-0.025em] md:text-2xl">
+                  {stage.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-black/55">{stage.copy}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -4,9 +4,9 @@ export function StructuredData() {
     "@type": "Person",
     name: "Philipp Widenfels",
     url: "https://beg1nner4ever.com",
-    jobTitle: "Applied AI Engineer & Data Scientist",
+    jobTitle: "Applied AI & Product Engineer",
     description:
-      "Freelance Applied AI Engineer and Data Scientist based in Europe. Building intelligent systems, ML pipelines, and full-stack applications.",
+      "Independent product engineer in Paris designing and shipping applied AI systems, internal tools, and customer products.",
     sameAs: [
       "https://github.com/Beg1nner4ever",
       "https://www.linkedin.com/in/pwidenfels/",
@@ -37,7 +37,7 @@ export function StructuredData() {
     name: "Philipp Widenfels",
     url: "https://beg1nner4ever.com",
     description:
-      "Portfolio of Philipp Widenfels — Applied AI Engineer & Data Scientist.",
+      "Proof-led portfolio of Philipp Widenfels — Applied AI & Product Engineer.",
   };
 
   return (

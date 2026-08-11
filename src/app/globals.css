@@ -49,37 +49,34 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─── Bright Editorial Theme ─── */
+/* ─── Evidence-led product portfolio ─── */
 :root {
-  --background: oklch(0.975 0.004 80);
-  --foreground: oklch(0.16 0.01 260);
+  --background: #f5f7fa;
+  --foreground: #0b0f17;
 
-  --card: oklch(0.99 0.002 80);
-  --card-foreground: oklch(0.16 0.01 260);
+  --card: #ffffff;
+  --card-foreground: #0b0f17;
 
-  --popover: oklch(0.99 0.002 80);
-  --popover-foreground: oklch(0.16 0.01 260);
+  --popover: #ffffff;
+  --popover-foreground: #0b0f17;
 
-  /* Vivid coral — the action color */
-  --primary: oklch(0.63 0.22 25);
-  --primary-foreground: oklch(0.99 0 0);
+  --primary: #3157ff;
+  --primary-foreground: #ffffff;
 
-  /* Soft warm gray surfaces */
-  --secondary: oklch(0.94 0.005 80);
-  --secondary-foreground: oklch(0.3 0.01 260);
+  --secondary: #e7ebf0;
+  --secondary-foreground: #232a36;
 
-  --muted: oklch(0.95 0.004 80);
-  --muted-foreground: oklch(0.45 0.01 260);
+  --muted: #e9edf2;
+  --muted-foreground: #616978;
 
-  /* Electric blue — data, links, secondary accent */
-  --accent: oklch(0.55 0.2 260);
-  --accent-foreground: oklch(0.99 0 0);
+  --accent: #9cff57;
+  --accent-foreground: #0b0f17;
 
   --destructive: oklch(0.55 0.22 27);
 
-  --border: oklch(0.9 0.005 80);
-  --input: oklch(0.9 0.005 80);
-  --ring: oklch(0.63 0.22 25);
+  --border: #d5dae2;
+  --input: #d5dae2;
+  --ring: #3157ff;
 
   /* Chart colors — coral, blue, amber, teal, rose */
   --chart-1: oklch(0.63 0.22 25);
@@ -88,7 +85,7 @@
   --chart-4: oklch(0.6 0.15 175);
   --chart-5: oklch(0.65 0.18 350);
 
-  --radius: 0.5rem;
+  --radius: 0.25rem;
 
   /* Warm amber — tertiary highlight */
   --amber: oklch(0.75 0.15 75);
@@ -97,14 +94,14 @@
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
   --transition-page: 0.5s var(--ease-editorial);
 
-  --sidebar: oklch(0.97 0.004 80);
-  --sidebar-foreground: oklch(0.16 0.01 260);
-  --sidebar-primary: oklch(0.63 0.22 25);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0.005 80);
-  --sidebar-accent-foreground: oklch(0.3 0.01 260);
-  --sidebar-border: oklch(0.9 0.005 80);
-  --sidebar-ring: oklch(0.63 0.22 25);
+  --sidebar: #f5f7fa;
+  --sidebar-foreground: #0b0f17;
+  --sidebar-primary: #3157ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e7ebf0;
+  --sidebar-accent-foreground: #232a36;
+  --sidebar-border: #d5dae2;
+  --sidebar-ring: #3157ff;
 }
 
 @layer base {
@@ -205,9 +202,9 @@
 
 /* Glass card for bright theme */
 .glass {
-  background: oklch(0.99 0.002 80 / 0.7);
+  background: rgb(245 247 250 / 0.88);
   backdrop-filter: blur(20px);
-  border: 1px solid oklch(0 0 0 / 0.06);
+  border-bottom: 1px solid rgb(11 15 23 / 0.1);
 }
 
 /* Glow effect for cards on hover — coral accent */
@@ -240,10 +237,34 @@
   content: '';
   position: fixed;
   inset: 0;
-  opacity: 0.02;
+  opacity: 0.012;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to right, transparent 2%, black 35%, black 100%);
+}
+
+::selection {
+  background: #9cff57;
+  color: #0b0f17;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Section spacing */

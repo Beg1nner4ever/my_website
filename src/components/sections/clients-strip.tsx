@@ -1,44 +1,35 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { clients } from "@/data/clients";
 
 export function ClientsStrip() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section ref={ref} className="py-16 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-10 text-center"
-        >
-          Brands I&apos;ve worked with
-        </motion.p>
-
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-          {clients.map((client, i) => (
+    <section ref={ref} className="border-b border-black/15 bg-[#dfe4eb] py-7 text-[#0b0f17]">
+      <div className="mx-auto grid max-w-[1500px] gap-5 px-5 sm:px-8 lg:grid-cols-[220px_1fr] lg:items-center lg:px-12">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-black/45">
+          Project experience with
+        </p>
+        <div className="flex items-center gap-10 overflow-hidden lg:justify-between">
+          {clients.slice(0, 7).map((client, index) => (
             <motion.div
               key={client.name}
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.07,
-                ease: [0.22, 1, 0.36, 1] as const,
-              }}
-              className="group relative"
-              title={`${client.name} — ${client.description}`}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: reduceMotion ? 0 : 0.4, delay: index * 0.04 }}
+              className="shrink-0"
+              title={`${client.name}: ${client.description}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={client.logo}
                 alt={client.name}
-                className={`${client.logoClass} max-w-[160px] w-auto object-contain opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0`}
+                className={`${client.logoClass} max-w-[125px] object-contain grayscale opacity-55 mix-blend-multiply transition-opacity hover:opacity-90`}
               />
             </motion.div>
           ))}

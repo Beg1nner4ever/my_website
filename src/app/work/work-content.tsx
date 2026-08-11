@@ -1,140 +1,104 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
-import { clients } from "@/data/clients";
 
-function AnimatedSection({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const shipped = projects.filter((project) => project.image);
+const labs = projects.filter((project) => !project.image);
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function WorkPage() {
-  return (
-    <div className="pt-32 pb-20">
-      {/* Header */}
-      <section className="max-w-7xl mx-auto px-6 mb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
-            Portfolio
-          </p>
-          <h1 className="font-heading text-5xl md:text-6xl tracking-tight text-foreground mb-6">
-            Selected Work
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-xl">
-            A collection of projects spanning AI engineering, data science, and
-            full-stack development.
-          </p>
-        </motion.div>
-      </section>
+  const reduceMotion = useReducedMotion();
 
-      {/* Projects */}
-      <section className="max-w-7xl mx-auto px-6 mb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, i) => (
-            <AnimatedSection key={project.slug} delay={i * 0.08}>
+  return (
+    <div className="bg-[#eef1f5] pb-24 pt-28 text-[#0b0f17] md:pb-36 md:pt-40">
+      <header className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-black/45">
+          Project index / live evidence
+        </p>
+        <div className="mt-5 grid gap-8 border-b border-black/20 pb-14 lg:grid-cols-[1fr_0.65fr] lg:items-end">
+          <h1 className="max-w-5xl font-sans text-6xl font-semibold leading-[0.86] tracking-[-0.065em] sm:text-7xl md:text-9xl">
+            Work that left the prototype.
+          </h1>
+          <p className="max-w-xl text-lg leading-relaxed text-black/58 lg:justify-self-end">
+            Product strategy, interface decisions, applied AI, and production
+            engineering shown through the things people can actually open and use.
+          </p>
+        </div>
+      </header>
+
+      <section className="mx-auto mt-16 max-w-[1500px] space-y-16 px-5 sm:px-8 md:mt-24 md:space-y-28 lg:px-12">
+        {shipped.map((project, index) => (
+          <motion.article
+            key={project.slug}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: reduceMotion ? 0 : 0.7, ease }}
+            className="grid gap-7 lg:grid-cols-[1fr_340px] lg:items-end lg:gap-10"
+          >
+            <Link
+              href={`/work/${project.slug}`}
+              className="group relative overflow-hidden border border-black/10 bg-white p-2 shadow-[0_20px_65px_rgba(20,30,50,0.1)]"
+            >
+              <Image
+                src={project.image!}
+                alt={project.imageAlt ?? `${project.title} interface`}
+                width={1600}
+                height={1000}
+                sizes="(max-width: 1024px) 100vw, 75vw"
+                priority={index === 0}
+                className="aspect-[16/9] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.012]"
+              />
+              <span className="absolute right-5 top-5 grid h-11 w-11 place-items-center bg-[#9cff57]">
+                <ArrowUpRight size={19} />
+              </span>
+            </Link>
+
+            <div>
+              <div className="flex justify-between border-b border-black/20 pb-3 font-mono text-[10px] uppercase tracking-[0.14em] text-black/45">
+                <span>{project.status}</span>
+                <span>{project.year}</span>
+              </div>
+              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] md:text-5xl">
+                {project.title}
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-black/58">{project.description}</p>
+              <p className="mt-5 border-l-2 border-[#3157ff] pl-4 text-sm font-medium leading-relaxed">
+                {project.outcome}
+              </p>
               <Link
                 href={`/work/${project.slug}`}
-                className="group block h-full"
+                className="mt-7 inline-flex items-center gap-2 border-b border-black pb-1 text-sm font-semibold"
               >
-                <div className="h-full p-8 rounded-xl border border-border bg-card hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-500">
-                  {/* Image placeholder */}
-                  <div className="relative aspect-[16/9] rounded-lg bg-gradient-to-br from-primary/8 via-accent/5 to-secondary mb-6 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-heading text-3xl text-primary/15">
-                        {project.title[0]}
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3 p-1.5 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ArrowUpRight size={14} className="text-foreground" />
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-0.5 text-[11px] font-medium tracking-wide uppercase rounded-full border border-border text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h2 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
+                View project
+                <ArrowUpRight size={14} />
               </Link>
-            </AnimatedSection>
-          ))}
-        </div>
+            </div>
+          </motion.article>
+        ))}
       </section>
 
-      {/* Clients */}
-      <section className="max-w-7xl mx-auto px-6">
-        <AnimatedSection>
-          <p className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
-            Client work
+      <section className="mx-auto mt-28 max-w-[1500px] px-5 sm:px-8 md:mt-40 lg:px-12">
+        <div className="border-t border-black/20 pt-5">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-black/45">
+            Active lab work
           </p>
-          <h2 className="font-heading text-4xl md:text-5xl tracking-tight text-foreground mb-12">
-            Who I&apos;ve Worked With
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {clients.map((client, i) => (
-            <AnimatedSection key={client.name} delay={i * 0.06}>
-              <div className="p-6 rounded-lg border border-border bg-card group hover:border-primary/20 transition-all duration-500">
-                <div className="h-12 flex items-center mb-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="h-6 w-auto object-contain opacity-50 grayscale group-hover:opacity-80 group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-                <h3 className="text-sm font-medium text-foreground">
-                  {client.name}
-                </h3>
-                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                  {client.description}
-                </p>
-                <span className="mt-2 inline-block text-[10px] font-medium uppercase tracking-widest text-primary/60">
-                  {client.industry}
-                </span>
-              </div>
-            </AnimatedSection>
+        </div>
+        <div className="mt-8 border-t border-black/20">
+          {labs.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/work/${project.slug}`}
+              className="group grid gap-4 border-b border-black/20 py-7 transition-colors hover:bg-white/60 sm:grid-cols-[1fr_1fr_auto] sm:items-center sm:px-3"
+            >
+              <h2 className="text-2xl font-semibold tracking-[-0.035em]">{project.title}</h2>
+              <p className="text-sm leading-relaxed text-black/55">{project.outcome}</p>
+              <ArrowUpRight size={17} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+            </Link>
           ))}
         </div>
       </section>

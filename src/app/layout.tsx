@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { Preloader } from "@/components/layout/preloader";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { StructuredData } from "./structured-data";
@@ -26,17 +25,18 @@ const instrumentSans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://beg1nner4ever.com"),
   title: {
-    default: "Philipp Widenfels — Applied AI Engineer & Data Scientist",
+    default: "Philipp Widenfels — Applied AI & Product Engineer",
     template: "%s | Philipp Widenfels",
   },
   description:
-    "Freelance Applied AI Engineer and Data Scientist based in Europe. Building intelligent systems, ML pipelines, and full-stack applications.",
+    "Independent product engineer in Paris designing and shipping applied AI systems, internal tools, and customer products.",
   keywords: [
     "AI Engineer",
-    "Data Scientist",
+    "Product Engineer",
     "Freelance",
     "Machine Learning",
     "Full Stack Developer",
+    "Paris",
   ],
   icons: {
     icon: "/favicon.svg",
@@ -65,13 +65,11 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className="min-h-full flex flex-col noise">
-        <Preloader>
-          <SmoothScroll>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </SmoothScroll>
-        </Preloader>
+        <SmoothScroll>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScroll>
         <Analytics />
         <SpeedInsights />
       </body>
